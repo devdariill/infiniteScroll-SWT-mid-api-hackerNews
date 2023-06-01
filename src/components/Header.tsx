@@ -1,9 +1,10 @@
+import { header, link } from './Header.css'
 
 function Header () {
   return (
-    <nav>
+    <nav className={header}>
       <img src='/logo.png' alt='logo' />
-      <a href='/'>
+      <a className={link} href='/'>
         Hacker News
       </a>
     </nav>
