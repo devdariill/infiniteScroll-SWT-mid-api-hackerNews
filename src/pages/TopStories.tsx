@@ -5,7 +5,7 @@ import { StoryLoader } from '../components/StoryLoader'
 import { getTopStories } from '../services/hacker-news'
 
 function TopStories () {
-  const { data, isLoading } = useSWRInfinite(
+  const { data, isLoading, size, setSize } = useSWRInfinite(
     (index) => `stories/${index + 1}`,
     (key) => {
       const [,page] = key.split('/')
@@ -30,7 +30,7 @@ function TopStories () {
           </li>
         ))}
       </ul>
-      <button>Load More</button>
+      <button onClick={() => { setSize(size + 1) }}>Load More</button>
     </>
   )
 }
