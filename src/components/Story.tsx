@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import { Link } from 'wouter'
 import { getItemInfo } from '../services/hacker-news'
-import { story, storyFooter, storyHeader, storyLink } from './Story.css'
+import { story, storyFooter, storyHeader, storyLink, storyTitle } from './Story.css'
 
 interface StoryProps {
   id: number
@@ -26,8 +26,8 @@ export const Story = (props: StoryProps) => {
   return (
     <article className={story}>
       <header className={storyHeader}>
-        <small>{index}.</small>
-        <a href={url} target='_black' rel='noopener noreferer'>{title}</a>
+        <small>{index + 1}.</small>
+        <a className={storyTitle} href={url} target='_black' rel='noopener noreferer'>{title}</a>
         <a className={storyLink} href={url}>({domain})</a>
       </header>
       <footer className={storyFooter}>

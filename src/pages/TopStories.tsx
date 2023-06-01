@@ -6,7 +6,7 @@ function TopStories () {
 
   return (
     <>
-      <ul>
+      <ul style={{ listStyle: 'none' }}>
         {isLoading && <li>Loading...</li>}
         {error != null && <li>Something went wrong</li>}
         {data?.map((id: number, index: number) => (
