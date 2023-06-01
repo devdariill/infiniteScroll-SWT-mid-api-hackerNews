@@ -17,12 +17,18 @@ export const Story = (props: StoryProps) => {
   const { by, kids, score, title, url } = data
   console.log(data)
 
+  let domain = ''
+  try {
+    domain = new URL(url).hostname.replace('www.', '')
+  } catch {
+    domain = 'news.ycombinator.com'
+  }
   return (
     <article className=''>
       <header className=''>
         <small className=''>{index}.</small>
         <a className='' href={url} target='_black' rel='noopener noreferer'>{title}</a>
-        <a href={url}>({url})</a>
+        <a href={url}>({domain})</a>
       </header>
       <footer />
     </article>
