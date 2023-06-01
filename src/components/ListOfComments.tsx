@@ -1,11 +1,12 @@
 import useSWR from 'swr'
 import { getItemInfo } from '../services/hacker-news'
+import { StoryLoader } from './StoryLoader'
 
 const Comment = (props: { id: number }) => {
   const { id } = props
   const { data, isLoading } = useSWR(`/comments/${id}`, () => getItemInfo(id))
   if (isLoading) {
-    return <div>Loading...</div>
+    return <StoryLoader />
   }
   const { by, time, text, kids } = data
 
