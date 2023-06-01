@@ -1,6 +1,5 @@
 import { Suspense, lazy } from 'react'
 import { Route } from 'wouter'
-import './App.css'
 import Header from './components/Header'
 import { StoryLoader } from './components/StoryLoader'
 
