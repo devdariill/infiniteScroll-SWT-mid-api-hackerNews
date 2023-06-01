@@ -10,16 +10,19 @@ const Comment = (props: { id: number }) => {
   const { by, time, text, kids } = data
 
   return (
-    <article>
-      <header>
-        <small>
-          <span>{by}</span>
-          <span>.</span>
-          <span>5 hours ago</span>
-        </small>
-      </header>
-      <p>{text}</p>
-    </article>
+    <>
+      <article>
+        <header>
+          <small>
+            <span>{by}</span>
+            <span>.</span>
+            <span>5 hours ago</span>
+          </small>
+        </header>
+        <p>{text}</p>
+      </article>
+      {kids?.length > 0 && <ListOfComments ids={kids.slice(0, 10)} />}
+    </>
   )
 }
 
