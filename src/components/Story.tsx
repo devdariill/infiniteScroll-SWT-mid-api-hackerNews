@@ -1,4 +1,5 @@
 import useSWR from 'swr'
+import { Link } from 'wouter'
 import { getItemInfo } from '../services/hacker-news'
 
 interface StoryProps {
@@ -30,7 +31,12 @@ export const Story = (props: StoryProps) => {
         <a className='' href={url} target='_black' rel='noopener noreferer'>{title}</a>
         <a href={url}>({domain})</a>
       </header>
-      <footer />
+      <footer>
+        <span>{score} points</span>
+        <Link className='' href={`/article/${id}`}> by {by}</Link>
+        <Link className='' href={`/article/${id}`}> 6 hours ago</Link>
+        <Link className='' href={`/article/${id}`}> {kids?.length ?? 0}</Link>
+      </footer>
     </article>
   )
 }
