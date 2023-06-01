@@ -6,6 +6,10 @@ import { StoryLoader } from '../components/StoryLoader'
 import { getTopStories } from '../services/hacker-news'
 
 function TopStories () {
+  useEffect(() => {
+    document.title = 'Hacker News - Peuba Tecnita USA de Frontend'
+  }, [])
+
   const { data, isLoading, size, setSize } = useSWRInfinite(
     (index) => `stories/${index + 1}`,
     (key) => {
