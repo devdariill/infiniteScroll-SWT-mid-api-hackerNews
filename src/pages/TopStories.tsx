@@ -6,7 +6,7 @@ import { getTopStories } from '../services/hacker-news'
 
 function TopStories () {
   const { data, isLoading } = useSWRInfinite(
-    (index) => `/stories/${index + 1}`,
+    (index) => `stories/${index + 1}`,
     (key) => {
       const [,page] = key.split('/')
       return getTopStories(Number(page), 10)
