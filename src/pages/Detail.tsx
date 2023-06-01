@@ -9,7 +9,7 @@ function Detail (props: { params: { id: number } }) {
   return (
     <div className=''>
       {
-        isLoading ? <div>Loading...</div> : <ListOfComments ids={data?.kids} />
+        isLoading ? <div>Loading...</div> : <ListOfComments ids={data?.kids?.slice(0, 10) ?? []} />
       }
     </div>
   )
