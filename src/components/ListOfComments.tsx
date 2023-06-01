@@ -11,16 +11,16 @@ const Comment = (props: { id: number }) => {
 
   return (
     <>
-      <article>
-        <header>
+      <details open>
+        <summary>
           <small>
             <span>{by}</span>
             <span>.</span>
             <span>5 hours ago</span>
           </small>
-        </header>
+        </summary>
         <p>{text}</p>
-      </article>
+      </details>
       {kids?.length > 0 && <ListOfComments ids={kids.slice(0, 10)} />}
     </>
   )
@@ -29,7 +29,7 @@ const Comment = (props: { id: number }) => {
 function ListOfComments (props: { ids: number[] }) {
   const { ids } = props
   return (
-    <ul>
+    <ul style={{ listStyle: 'none' }}>
       {
         ids?.map((id: number) => (
           <li key={id}>
