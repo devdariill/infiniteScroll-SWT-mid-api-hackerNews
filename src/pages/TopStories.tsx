@@ -1,4 +1,5 @@
 // import useSWR from 'swr'
+import { useEffect, useRef } from 'react'
 import useSWRInfinite from 'swr/infinite'
 import { Story } from '../components/Story'
 import { StoryLoader } from '../components/StoryLoader'
@@ -9,7 +10,7 @@ function TopStories () {
     (index) => `stories/${index + 1}`,
     (key) => {
       const [,page] = key.split('/')
-      return getTopStories(Number(page), 10)
+      return getTopStories(Number(page), 5)
     }
   )
   // exmaple for flat()
@@ -19,7 +20,17 @@ function TopStories () {
   // const data = [[1,2,3], [4,5,6], [7,8,[9]]] -> [1,2,3,4,5,6,7,8,9]
   const stories = data?.flat()
   // const { data, error, isLoading } = useSWR('stories', () => getTopStories(1, 10))
-
+  const chivatoEl = useRef(null)
+  // const chivatoEl = useRef<HTMLSpanElement >(null)
+  useEffect(() => {
+    if (chivatoEl.current == null) return
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !isLoading) {
+        setSize((prevSize) => prevSize + 1)
+      }
+    })
+    observer.observe(chivatoEl.current)
+  }, [isLoading, setSize])
   return (
     <>
       {isLoading && <StoryLoader />}
@@ -30,7 +41,8 @@ function TopStories () {
           </li>
         ))}
       </ul>
-      <button onClick={() => { setSize(size + 1) }}>Load More</button>
+      {!isLoading && <span ref={chivatoEl}>.</span>}
+      {/* <button onClick={() => { setSize(size + 1) }}>Load More</button> */}
     </>
   )
 }
