@@ -3,7 +3,7 @@ import { Story } from '../components/Story'
 import { StoryLoader } from '../components/StoryLoader'
 import { getTopStories } from '../services/hacker-news'
 function TopStories () {
-  const { data, error, isLoading } = useSWR('stories', () => getTopStories(1, 3))
+  const { data, error, isLoading } = useSWR('stories', () => getTopStories(1, 10))
 
   return (
     <>
