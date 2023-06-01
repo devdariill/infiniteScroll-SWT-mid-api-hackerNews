@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import { Link } from 'wouter'
 import { getItemInfo } from '../services/hacker-news'
+import { getRelativeTime } from '../utils/getrelativeTime'
 import { story, storyFooter, storyHeader, storyLink, storyTitle } from './Story.css'
 import { StoryLoader } from './StoryLoader'
 
@@ -17,13 +18,15 @@ export const Story = (props: StoryProps) => {
     return <StoryLoader />
   }
 
-  const { by, kids, score, title, url } = data
+  const { by, kids, score, title, url, time } = data
   console.log(data)
 
   let domain = ''
   try {
     domain = new URL(url).hostname.replace('www.', '')
   } catch {}
+
+  const timeAgo = getRelativeTime(time)
   return (
     <article className={story}>
       <header className={storyHeader}>
@@ -34,7 +37,7 @@ export const Story = (props: StoryProps) => {
       <footer className={storyFooter}>
         <span>{score} points</span>
         <Link className={storyLink} href={`/article/${id}`}> by {by}</Link>
-        <Link className={storyLink} href={`/article/${id}`}> 6 hours ago</Link>
+        <Link className={storyLink} href={`/article/${id}`}> {timeAgo}</Link>
         <Link className={storyLink} href={`/article/${id}`}> {kids?.length ?? 0}</Link>
       </footer>
     </article>
